@@ -1,0 +1,60 @@
+{
+    "nodes" : {
+        "lumi.light.aqcn02" : {
+            "extensions":{
+                "dynamicProperies": false,
+                "mapping": {
+                    "state": {
+                        "dataTypeBridge" : {
+                            "type" : "boolean",
+                            "on"   : "ON",
+                            "off"  : "OFF"
+                        }
+                    }
+                }
+            },
+            "sensors": [{
+                "id" : "state"
+            }],
+            "options": [],
+            "telemetry": []
+        },
+        "lumi.sensor_smoke" : {
+            "sensors": [{
+                "id" : "sensitivity",
+                "dataType": "enum",
+                "format": "low,medium,high"
+            }],
+            "options": [],
+            "telemetry": []
+        },
+        "GL-B-001Z" : {
+            "extensions":{
+                "dynamicProperies": false,
+                "mapping": {
+                    "state": {
+                        "dataTypeBridge" : {
+                            "type" : "boolean",
+                            "on"   : "ON",
+                            "off"  : "OFF"
+                        }
+                    }
+                }
+            },
+            "sensors": [{
+                "id" : "state"
+            }, {
+                "id" : "flash",
+                "dataType": "enum",
+                "format": "select,lselect,none"
+            }, {
+                "id" : "alert",
+                "dataType": "enum",
+                "format": "select,lselect,none"
+            }],
+            "options": [],
+            "telemetry": [],
+            "ignoreSensors": [ "white-value", "alert", "flash" ]
+        }
+    }
+}

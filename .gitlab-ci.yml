@@ -1,0 +1,48 @@
+image: $DOCKER_REGISTRY_PREFIX/2smart/utils/combined-ci-image:latest
+
+services:
+  - name: $DOCKER_REGISTRY_PREFIX/2smart/base-images/docker-dind
+    alias: docker
+
+stages:
+  - test
+  - build
+  - release
+
+before_script:
+  - git clone https://oauth2:$ACCESS_TOKEN@$DOCKER_UTILS_REPO_URL
+  - mv docker-utils/utils.sh docker.sh
+
+before_script:
+  - git clone https://oauth2:$ACCESS_TOKEN@$DOCKER_UTILS_REPO_URL
+  - mv docker-utils/utils.sh docker.sh
+
+lint:
+   before_script:
+     - apk add make gcc g++ python3 linux-headers udev
+     - npm install serialport --build-from-source
+     - npm ci
+   stage: test
+   script:
+     - npm run test:lint
+   only:
+     - 'merge_requests'
+     - 'master'
+
+build:
+  stage: build
+  script:
+    - ./docker.sh rundaemon
+    - ./docker.sh build
+    - ./docker.sh push
+    - ./docker.sh push_bridge_type_to_demo
+  only:
+    - 'master'
+
+release:
+  stage: release
+  script:
+    - ./docker.sh rundaemon
+    - ./docker.sh release_bridge_type
+  only:
+    - 'release'

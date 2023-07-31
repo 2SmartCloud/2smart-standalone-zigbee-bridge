@@ -13,7 +13,7 @@
     "dependencies": {
         "bluebird": "^3.7.2",
         "fs-extra": "^8.1.0",
-        "homie-sdk": "github:2SmartCloud/2smart-standalone-homie-sdk",
+        "homie-sdk": "^1.0.0",
         "mqtt-packet": "^6.2.1",
         "underscore": "^1.9.2",
         "zigbee-herdsman": "^0.13.92",
